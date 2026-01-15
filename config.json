@@ -1,0 +1,44 @@
+{
+  "app_name": "Star Health Insurance Premium Calculator",
+  "description": "Automated quote fetching for 4 scenario combinations",
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": 1,
+      "label": "5L/1yr",
+      "sum_insured": 500000,
+      "tenure_years": 1,
+      "description": "5 Lakh coverage for 1 year"
+    },
+    {
+      "id": 2,
+      "label": "5L/3yr",
+      "sum_insured": 500000,
+      "tenure_years": 3,
+      "description": "5 Lakh coverage for 3 years"
+    },
+    {
+      "id": 3,
+      "label": "10L/1yr",
+      "sum_insured": 1000000,
+      "tenure_years": 1,
+      "description": "10 Lakh coverage for 1 year"
+    },
+    {
+      "id": 4,
+      "label": "10L/3yr",
+      "sum_insured": 1000000,
+      "tenure_years": 3,
+      "description": "10 Lakh coverage for 3 years"
+    }
+  ],
+  "urls": {
+    "star_health_quick_quote": "https://atom.starhealth.in/quickquote"
+  },
+  "settings": {
+    "browser_wait_timeout": 10,
+    "element_wait_delay": 2,
+    "request_delay_seconds": 2,
+    "headless_mode": false
+  }
+}
