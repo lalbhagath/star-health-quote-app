@@ -18,6 +18,99 @@ The calculator automatically computes your age from your date of birth and retri
 ✅ **Multi-Scenario Quotes** - Fetches all 4 scenarios in a single execution  
 ✅ **Web Automation** - Uses Selenium for reliable interaction with Star Health portal  
 ✅ **JSON Output** - Saves results in structured JSON format  
+
+✅ **Multiple Family Members Support** - Supports up to 4 family members with individual DOB tracking
+✅ **Automatic Age Calculation** - Calculates age for each family member automatically
+✅ **Family Insurance Quotes** - Gets quotes for complete family units (not just individuals)
+
+## ⭐ NEW FEATURE: Multiple Family Members Support!
+
+Now you can get quotes for your **entire family** (up to 4 members) with a single command!
+
+### How It Works:
+
+1. **Define Your Family** - List all family members with their DOB
+2. **Automatic Age Calculation** - Script calculates age for each person
+3. **Single Quote Execution** - Gets all 4 scenario quotes for your family
+4. **Complete Family Data** - Results include all member details and quotes
+
+### Family Member Types:
+
+- `adult` - Working age adults
+- `parent` - Senior parents/grandparents
+- `child` - Children (if applicable)
+
+### Example - Get Quotes for Your Family:
+
+```python
+from star_health_calculator import StarHealthFamilyCalculator
+
+calculator = StarHealthFamilyCalculator()
+
+# Define your family (up to 4 members)
+family = [
+    {
+        'name': 'Father',
+        'dob': '1960-05-15',
+        'type': 'adult'
+    },
+    {
+        'name': 'Mother',
+        'dob': '1962-08-20',
+        'type': 'adult'
+    },
+    {
+        'name': 'Son',
+        'dob': '1995-03-10',
+        'type': 'adult'
+    },
+    {
+        'name': 'Daughter',
+        'dob': '1998-12-25',
+        'type': 'adult'
+    }
+]
+
+# Get all quotes for your family
+results = calculator.get_all_quotes_for_family(family)
+
+# Display results
+print(f"Family: {results['family']}")
+print(f"Member Count: {results['member_count']}")
+print("\nIndividual Ages:")
+for member in results['members']:
+    age = calculator.calculate_age(member['dob'])
+    print(f"  - {member['name']}: {age} years old")
+
+print("\nQuotes:")
+for scenario, premium in results['quotes'].items():
+    print(f"  {scenario}: {premium}")
+
+# Save to file
+calculator.save_results('family_quotes.json')
+calculator.close()
+```
+
+### Output Example:
+
+```json
+{
+  "family": "Father + Mother + Son + Daughter",
+  "members": [
+    {"name": "Father", "dob": "1960-05-15", "type": "adult"},
+    {"name": "Mother", "dob": "1962-08-20", "type": "adult"},
+    {"name": "Son", "dob": "1995-03-10", "type": "adult"},
+    {"name": "Daughter", "dob": "1998-12-25", "type": "adult"}
+  ],
+  "member_count": 4,
+  "quotes": {
+    "5L/1yr": "₹12,500",
+    "5L/3yr": "₹31,200",
+    "10L/1yr": "₹18,900",
+    "10L/3yr": "₹48,100"
+  }
+}
+```
 ✅ **Configurable** - All scenarios and settings in config.json  
 ✅ **Error Handling** - Comprehensive error management and logging  
 
